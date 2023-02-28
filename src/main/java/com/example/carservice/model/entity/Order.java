@@ -24,7 +24,7 @@ public class Order {
     @ManyToMany(mappedBy = "orders")
     private Set<Product> products;
     @ManyToMany(mappedBy = "orders")
-    private Set<Servicee> servicees;
+    private Set<Services> services;
     private String note;
     @Column(name = "time_order")
     private Date timeOrder;

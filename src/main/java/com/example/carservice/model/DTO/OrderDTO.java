@@ -1,6 +1,6 @@
 package com.example.carservice.model.DTO;
 
-import com.example.carservice.model.entity.Servicee;
+import com.example.carservice.model.entity.Services;
 import lombok.Data;
 
 import java.util.Set;
@@ -9,6 +9,6 @@ import java.util.Set;
 public class OrderDTO {
     private CustomerDTO customer;
     private Set<ProductDTO> products;
-    private Set<Servicee> servicees;
+    private Set<Services> services;
     private String note;
 }

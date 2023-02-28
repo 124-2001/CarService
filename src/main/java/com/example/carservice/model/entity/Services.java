@@ -10,7 +10,7 @@ import java.util.Set;
 @Table
 @Getter
 @Setter
-public class Servicee {
+public class Services {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

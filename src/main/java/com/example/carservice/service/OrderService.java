@@ -3,8 +3,6 @@ package com.example.carservice.service;
 import com.example.carservice.exception.NotFoundException;
 import com.example.carservice.model.DTO.CustomerDTO;
 import com.example.carservice.model.DTO.OrderDTO;
-import com.example.carservice.model.DTO.ServiceDTO;
-import com.example.carservice.model.DTO.StaffDTO;
 import com.example.carservice.model.entity.*;
 import com.example.carservice.model.enums.StatusOrder;
 import com.example.carservice.repository.CustomerRepository;
@@ -65,43 +63,43 @@ public class OrderService {
         return order;
     }
 
-    @Transactional
-    public Order insertStaffInOrder(Order order, Set<StaffDTO> staffsDTO) {
-        ModelMapper mapper = new ModelMapper();
-        if (orderRepository.findByCustomerAndProductsAndStatusOrder(order.getCustomer(), order.getProducts(),StatusOrder.PROCESSING) == null) {
-            throw new NotFoundException("Khong tim thay don hang cua khach hang");
-        }
-        Order findOrder = orderRepository.findByCustomerAndProductsAndStatusOrder(order.getCustomer(), order.getProducts(),StatusOrder.PROCESSING);
-        Set<Staff> staffs = staffsDTO.stream().map(staffDTO -> mapper.map(staffDTO, Staff.class)).collect(Collectors.toSet());
-        findOrder.setStaffs(staffs);
-        orderRepository.save(findOrder);
-        return findOrder;
-    }
+//    @Transactional
+//    public Order insertStaffInOrder(Order order, Set<StaffDTO> staffsDTO) {
+//        ModelMapper mapper = new ModelMapper();
+//        if (orderRepository.findByCustomerAndProductsAndStatusOrder(order.getCustomer(), order.getProducts(),StatusOrder.PROCESSING) == null) {
+//            throw new NotFoundException("Khong tim thay don hang cua khach hang");
+//        }
+//        Order findOrder = orderRepository.findByCustomerAndProductsAndStatusOrder(order.getCustomer(), order.getProducts(),StatusOrder.PROCESSING);
+//        Set<Staff> staffs = staffsDTO.stream().map(staffDTO -> mapper.map(staffDTO, Staff.class)).collect(Collectors.toSet());
+//        findOrder.setStaffs(staffs);
+//        orderRepository.save(findOrder);
+//        return findOrder;
+//    }
+//
+//    @Transactional
+//    public Order updateService(Order order, Set<ServiceDTO> servicesDTO){
+//        ModelMapper mapper = new ModelMapper();
+////        String assignment ="";
+//        if (orderRepository.findByCustomerAndProductsAndStatusOrder(order.getCustomer(), order.getProducts(),StatusOrder.PROCESSING) == null) {
+//            throw new NotFoundException("Khong tim thay don hang cua khach hang");
+//        }
+//        Order findOrder = orderRepository.findByCustomerAndProductsAndStatusOrder(order.getCustomer(), order.getProducts(),StatusOrder.PROCESSING);
+//        for (ServiceDTO serviceDTO : servicesDTO) {
+//            if(serviceRepository.findByName(serviceDTO.getName())==null){
+//                serviceeService.insertService(serviceDTO);
+//            }
+//        }
+//        Set<Servicee> servicees = servicesDTO.stream().map(serviceDTO -> mapper.map(serviceDTO,Servicee.class)).collect(Collectors.toSet());
+//        findOrder.setServicees(servicees);
+//        findOrder.setTotalPrice(totalPrice(servicees));
+//        orderRepository.save(findOrder);
+//        return findOrder;
+//    }
 
-    @Transactional
-    public Order updateService(Order order, Set<ServiceDTO> servicesDTO){
-        ModelMapper mapper = new ModelMapper();
-//        String assignment ="";
-        if (orderRepository.findByCustomerAndProductsAndStatusOrder(order.getCustomer(), order.getProducts(),StatusOrder.PROCESSING) == null) {
-            throw new NotFoundException("Khong tim thay don hang cua khach hang");
-        }
-        Order findOrder = orderRepository.findByCustomerAndProductsAndStatusOrder(order.getCustomer(), order.getProducts(),StatusOrder.PROCESSING);
-        for (ServiceDTO serviceDTO : servicesDTO) {
-            if(serviceRepository.findByName(serviceDTO.getName())==null){
-                serviceeService.insertService(serviceDTO);
-            }
-        }
-        Set<Servicee> servicees = servicesDTO.stream().map(serviceDTO -> mapper.map(serviceDTO,Servicee.class)).collect(Collectors.toSet());
-        findOrder.setServicees(servicees);
-        findOrder.setTotalPrice(totalPrice(servicees));
-        orderRepository.save(findOrder);
-        return findOrder;
-    }
-
-    public float totalPrice(Set<Servicee> servicees){
+    public float totalPrice(Set<Services> services){
         float price =0;
-        for (Servicee servicee : servicees) {
-            price+= servicee.getPrice();
+        for (Services service : services) {
+            price+= service.getPrice();
         }
         return price;
     }

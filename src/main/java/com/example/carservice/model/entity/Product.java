@@ -21,4 +21,8 @@ public class Product {
     @JoinTable(name = "product_order",joinColumns = @JoinColumn(name = "product_id"),inverseJoinColumns = @JoinColumn(name = "order_id"))
     private Set<Order> orders;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
 }

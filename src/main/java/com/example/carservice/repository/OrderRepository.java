@@ -13,5 +13,5 @@ import java.util.Set;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order,Integer> {
-    Order findByCustomerAndProductsAndStatusOrder(Customer customer, Set<Product> products, StatusOrder statusOrder);
+//    Order findByCustomerAndProductsAndStatusOrder(Customer customer, Set<Product> products, StatusOrder statusOrder);
 }

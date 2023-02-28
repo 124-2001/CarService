@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+<!--    <script th:src="@{/js/delete.js}"></script>-->
+</head>
+<body>
+<h1>Order List</h1>
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>ID</th>-->
+<!--        <th>Customer</th>-->
+<!--        <th>List Product</th>-->
+<!--        <th>Service</th>-->
+<!--        <th>List Staff</th>-->
+<!--        <th>Note</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="order : ${orders}">-->
+<!--        <td th:text="${order.id}"></td>-->
+<!--        <td th:text="${order.customer.name}"></td>-->
+
+<!--&lt;!&ndash;        <td th:text="${orders.services}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;        <td th:text="${orders.staffs}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;        <td th:text="${orders.note}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;        <td><button th:onclick="'deleteUser(\'' + ${user.id} + '\');'">Delete</button><button th:onclick="">Update</button></td>&ndash;&gt;-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+
+
+<div th:each="order : ${orders}">
+    <h2>Order #<span th:text="${order.id}"></span></h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Product name</th>
+            <th>Quantity</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${order.products}">
+            <td th:text="${product.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

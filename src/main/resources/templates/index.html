@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/order.js}"></script>
+</head>
+<body>
+<h1 id="title">New Order</h1>
+<div class="container">
+    <form>
+        <label for="customer-name">Customer Name:</label>
+        <input type="text" id="customer-name" name="customer-name" /><br />
+
+        <label for="customer-address">Customer Address:</label>
+        <input type="email" id="customer-address" name="customer-email" /><br />
+
+        <label for="customer-phone">Customer Phone:</label>
+        <input type="text" id="customer-phone" name="product-name" /><br />
+        <br />
+
+        <label>Product </label>
+        <h3>Danh sách sản phẩm</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product, iterStat : ${products}">
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.quantity}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <br />
+
+        <!-- Form nhập sản phẩm mới -->
+        <h3>Thêm sản phẩm</h3>
+        <label for="productName">Tên sản phẩm:</label>
+        <input type="text" id="productName" name="productName" />
+
+        <label for="productPrice">Giá:</label>
+        <input type="number" id="productPrice" name="productPrice" />
+
+        <label for="productQuantity">Số lượng:</label>
+        <input type="number" id="productQuantity" name="productQuantity" />
+
+        <button type="button" th:onclick="addProduct()">Thêm sản phẩm</button>
+        <br /><br />
+        <input type="submit" value="Create Order" />
+    </form>
+</div>
+</body>
+</html>

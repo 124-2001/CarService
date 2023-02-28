@@ -1,7 +1,7 @@
 package com.example.carservice.service;
 
 import com.example.carservice.model.DTO.ServiceDTO;
-import com.example.carservice.model.entity.Servicee;
+import com.example.carservice.model.entity.Services;
 import com.example.carservice.repository.ServiceRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -14,9 +14,9 @@ public class ServiceeService {
     @Autowired
     ServiceRepository serviceRepository;
 
-    public Servicee insertService(ServiceDTO serviceDTO){
+    public Services insertService(ServiceDTO serviceDTO){
         ModelMapper mapper = new ModelMapper();
-        Servicee service = mapper.map(serviceDTO,Servicee.class);
+        Services service = mapper.map(serviceDTO, Services.class);
         serviceRepository.save(service);
         return service;
     }
